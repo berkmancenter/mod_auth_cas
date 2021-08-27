@@ -1242,7 +1242,7 @@ apr_byte_t writeCASCacheEntry(request_rec *r, char *name, cas_cache_entry *cache
 	path = apr_psprintf(r->pool, "%s%s", c->CASCookiePath, name);
 
 	if(exists == FALSE) {
-		if((i = apr_file_open(&f, path, APR_FOPEN_CREATE|APR_FOPEN_WRITE|APR_EXCL, APR_FPROT_UREAD|APR_FPROT_UWRITE, r->pool)) != APR_SUCCESS) {
+		if((i = apr_file_open(&f, path, APR_FOPEN_CREATE|APR_FOPEN_WRITE|APR_EXCL, APR_FPROT_OS_DEFAULT, r->pool)) != APR_SUCCESS) {
 			ap_log_rerror(APLOG_MARK, APLOG_ERR, 0, r, "MOD_AUTH_CAS: Cookie file '%s' could not be created: %s", path, apr_strerror(i, name, strlen(name)));
 			return FALSE;
 		}
@@ -1253,7 +1253,7 @@ apr_byte_t writeCASCacheEntry(request_rec *r, char *name, cas_cache_entry *cache
 				ap_log_rerror(APLOG_MARK, APLOG_ERR, 0, r, "MOD_AUTH_CAS: Cookie file '%s' could not be opened: %s", path, apr_strerror(i, name, strlen(name)));
 				return FALSE;
 			}
-			if(apr_file_open(&f, path, APR_FOPEN_READ|APR_FOPEN_WRITE, APR_FPROT_UREAD|APR_FPROT_UWRITE, r->pool) == APR_SUCCESS)
+			if(apr_file_open(&f, path, APR_FOPEN_READ|APR_FOPEN_WRITE, APR_FPROT_OS_DEFAULT, r->pool) == APR_SUCCESS)
 				break;
 			else
 				apr_sleep(1000);
