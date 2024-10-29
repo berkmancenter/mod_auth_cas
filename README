@@ -10,7 +10,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
 
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,7 +26,7 @@ with an authentication server that conforms to the CAS version 1 or 2
 protocol or SAML protocol as used by the JASIG/Apereo CAS Server.
 At the time of this writing, the CAS protocol specification is here:
 
-http://apereo.github.io/cas/development/protocol/CAS-Protocol-Specification.html
+https://apereo.github.io/cas/development/protocol/CAS-Protocol-Specification.html
 
 ========================================================================
 Getting Started
@@ -49,7 +49,7 @@ The following development libraries and utilities must be installed:
 * Apache Portable Runtime Utilities - 1.3.0 or higher
 * Apache Web Server - 2.4 or higher
 * libcurl - 7.18.2 or higher
-* libpcre - 7.8 or higher
+* libpcre2 - 10 or higher
 
 Download the distribution via git or tarball.  Because git does not
 preserve timestamps, autoconf may determine it is necessary to bootstrap
@@ -75,7 +75,7 @@ Protect a "Location" or "Directory" block in your Apache
 configuration:
 
 	<Location /secured>
-		Authtype CAS
+		AuthType CAS
 		Require valid-user
 	</Location>
 
@@ -89,7 +89,7 @@ case-sensitive):
 	CASValidateSAML On
 
 	<Location /secured>
-		Authtype CAS
+		AuthType CAS
 		Require cas-attribute edupersonaffiliation:staff
 	</Location>
 
